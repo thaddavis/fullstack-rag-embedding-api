@@ -1,5 +1,5 @@
 {
-    "name": "Fullstack R.A.G. Devcontainer",
+    "name": "Fullstack R.A.G. Embeddings API",
     "build": {
       "dockerfile": "../Dockerfile.dev"
     },
@@ -16,9 +16,9 @@
       }
     },
     "forwardPorts": [
-      4000
+      7000
     ],
-    "appPort": 4000,
+    "appPort": 7000,
     "workspaceMount": "source=${localWorkspaceFolder},target=/code,type=bind,consistency=delegated",
     "workspaceFolder": "/code",
     "runArgs": [ "--network=agent-network" ]
