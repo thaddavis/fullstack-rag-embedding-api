@@ -8,4 +8,5 @@ Setting up CICD for Embedding API
 - change .github/workflows/cicd.yaml
 - Enable the Artifact Registry API on your GCP project if needed
 - `gcloud artifacts repositories create fullstack-rag-embedding-api --repository-format docker --project fullstack-rag --location us-central1` √
+- https://docs.python.org/3/library/hashlib.html
 - 

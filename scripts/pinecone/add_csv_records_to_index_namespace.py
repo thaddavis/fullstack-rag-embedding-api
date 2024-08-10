@@ -4,11 +4,14 @@ import os
 from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
 import time
+import hashlib
 
 load_dotenv()
 
 api_key = os.getenv("PINECONE_API_KEY")
 index_name = os.getenv("PINECONE_INDEX")
+# custom_namespace='gptuesday'
+custom_namespace='tad'
 pc = Pinecone(api_key=api_key)
 index = pc.Index(index_name)
 
@@ -16,7 +19,8 @@ print("BEFORE", index.describe_index_stats())
 
 model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 
-with open("./data/gptuesday_kb.csv") as kb_file:
+# with open("./data/gptuesday_kb.csv") as kb_file:
+with open("./data/tad_kb.csv") as kb_file:
     print(type(kb_file))
 
     csvreader = csv.reader(kb_file)
@@ -34,7 +38,7 @@ with open("./data/gptuesday_kb.csv") as kb_file:
           vectors=[
             # 1st index the question
             {
-              "id": str(hash(row[0])),
+              "id": hashlib.sha1(row[0].encode('utf-8')).hexdigest(),
               "values": embeddings[0],
               "metadata": {
                   "q": row[0],
@@ -45,7 +49,7 @@ with open("./data/gptuesday_kb.csv") as kb_file:
             },
             # 2nd index the answer
             {
-              "id": str(hash(row[1])),
+              "id": hashlib.sha1(row[1].encode('utf-8')).hexdigest(),
               "values": embeddings[1],
               "metadata": {
                   "q": row[0],
@@ -53,7 +57,8 @@ with open("./data/gptuesday_kb.csv") as kb_file:
                   "created_at": int(time.time())
               },
             },
-          ]
+          ],
+          namespace=custom_namespace,
         )        
 
 print('Record count AFTER adding knowledge ->', index.describe_index_stats())
