@@ -17,5 +17,10 @@ Self-hosted Embeddings API for "Fullstack (RAG)" course
 ```
 curl -X POST http://localhost:7000/huggingface/embedding \
      -H "Content-Type: application/json" \
-     -d '"hello world"'
+     -d '{"input": "hello world"}'
 ```
+
+## Hugging Face reference links
+
+- https://www.sbert.net/docs/sentence_transformer/pretrained_models.html#original-models
+- https://huggingface.co/sentence-transformers/all-MiniLM-L6-v2 (384 dimensional vectors)

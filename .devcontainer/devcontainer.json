@@ -21,6 +21,6 @@
     "appPort": 7000,
     "workspaceMount": "source=${localWorkspaceFolder},target=/code,type=bind,consistency=delegated",
     "workspaceFolder": "/code",
-    "runArgs": [ "--network=agent-network" ]
+    "runArgs": [ "--network=agent-network", "--name=embeddings-api" ]
   }
   
