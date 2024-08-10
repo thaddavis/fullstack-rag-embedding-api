@@ -10,7 +10,7 @@ env:
   SERVICE: fullstack-rag-embedding-api-service # Cloud Run service name
   REGION: us-east1 # Cloud Run service region
   ARTIFACTORY_URL: us-central1-docker.pkg.dev/fullstack-rag/fullstack-rag-embedding-api/fullstack-rag-embedding-api
-  MEMORY: 1Gi # Adjust this as needed
+  MEMORY: 2Gi # Adjust this as needed
 
 jobs:
   deploy:
