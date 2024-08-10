@@ -1,8 +1,8 @@
 # TLDR
 
-Setting up CICD for backend
+Setting up CICD for Embedding API
 
 ##
 
-- copied in cicd.yaml from `fullstack-rag-frontend` 
-- copy in `service account`
+- added Service Account creds to GitHub secrets config
+- change .github/workflows/cicd.yaml
