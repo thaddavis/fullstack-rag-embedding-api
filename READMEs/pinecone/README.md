@@ -41,3 +41,6 @@ Useful info related to https://www.pinecone.io/
 - CHECK OUT: `src/_4_ragAgent/router.py`
 - https://docs.pinecone.io/guides/data/query-data#using-metadata-filters-in-queries
 
+## For workout recommendations DEMO
+
+- https://docs.pinecone.io/guides/data/filter-with-metadata
