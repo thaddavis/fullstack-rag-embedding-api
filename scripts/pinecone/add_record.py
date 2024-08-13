@@ -2,6 +2,7 @@ from pinecone import Pinecone
 import os
 from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
+import hashlib
 
 load_dotenv()
 
@@ -23,7 +24,7 @@ print(embeddings)
 index.upsert(
   vectors=[
     {
-      "id": str(hash(chunks[0]['q'])),
+      "id": hashlib.sha1(chunks[0]['q'].encode('utf-8')).hexdigest(),
       "values": embeddings[0],
       "metadata": {"q": chunks[0]['q'], "a": chunks[0]['a']}
     },
