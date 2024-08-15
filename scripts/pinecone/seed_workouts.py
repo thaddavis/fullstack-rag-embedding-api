@@ -11,7 +11,7 @@ load_dotenv()
 
 conn_info = os.getenv("POSTGRES_URL")
 api_key = os.getenv("PINECONE_API_KEY")
-index_name = os.getenv("PINECONE_INDEX")
+index_name = os.getenv("PINECONE_ALL_MINILM_L6_V2_INDEX")
 custom_namespace='workouts'
 # created_by = "tad@cmdlabs.io"
 created_by = "r@pirate.ai"

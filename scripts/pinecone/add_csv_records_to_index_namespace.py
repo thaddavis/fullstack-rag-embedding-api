@@ -9,7 +9,7 @@ import hashlib
 load_dotenv()
 
 api_key = os.getenv("PINECONE_API_KEY")
-index_name = os.getenv("PINECONE_INDEX")
+index_name = os.getenv("PINECONE_ALL_MINILM_L6_V2_INDEX")
 # custom_namespace='gptuesday'
 custom_namespace='tad'
 pc = Pinecone(api_key=api_key)
