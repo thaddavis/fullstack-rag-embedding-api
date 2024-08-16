@@ -1,6 +1,6 @@
 # TLDR
 
-Self-hosted Embeddings API for "Fullstack (RAG)" course
+Self-hosted Embeddings API for "Fullstack Vectors" course
 
 ## How to run the FastAPI
 
