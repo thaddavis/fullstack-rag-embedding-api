@@ -14,7 +14,7 @@ api_key = os.getenv("PINECONE_API_KEY")
 index_name = os.getenv("PINECONE_ALL_MINILM_L6_V2_INDEX")
 custom_namespace='workouts'
 # created_by = "tad@cmdlabs.io"
-created_by = "r@pirate.ai"
+created_by = "arnold@fit.ai"
 pc = Pinecone(api_key=api_key)
 index = pc.Index(index_name)
 
@@ -56,7 +56,7 @@ with open("./data/workouts.csv") as kb_file:
                   "title": row[0],
                   "description": row[1],
                   "created_at": int(time.time()),
-                  "created_by": created_by,
+                  "created_by": "arnold@fit.ai",
                   "uuid": hashlib.sha1(row[0].encode('utf-8')).hexdigest()
               },
             },
@@ -68,7 +68,7 @@ with open("./data/workouts.csv") as kb_file:
                   "title": row[0],
                   "description": row[1],
                   "created_at": int(time.time()),
-                  "created_by": created_by,
+                  "created_by": "arnold@fit.ai",
                   "uuid": hashlib.sha1(row[0].encode('utf-8')).hexdigest()
               },
             },
