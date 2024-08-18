@@ -13,14 +13,13 @@ conn_info = os.getenv("POSTGRES_URL")
 api_key = os.getenv("PINECONE_API_KEY")
 index_name = os.getenv("PINECONE_ALL_MINILM_L6_V2_INDEX")
 custom_namespace='workouts'
-# created_by = "tad@cmdlabs.io"
 created_by = "arnold@fit.ai"
 pc = Pinecone(api_key=api_key)
 index = pc.Index(index_name)
 
 model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 
-with open("./data/workouts.csv") as kb_file:
+with open("./data/recommendations/workouts.csv") as kb_file:
     print(type(kb_file))
 
     csvreader = csv.reader(kb_file)
@@ -31,16 +30,6 @@ with open("./data/workouts.csv") as kb_file:
     for row in csvreader:
         print('row')
         print('title:',row[0],'description:',row[1])
-
-        # vvv DEPRECATED vvv
-        # conn = psycopg.connect(conn_info) # Connect to PostgreSQL
-        # cursor = conn.cursor() # Create a cursor object
-        # query = "INSERT INTO workouts (user_id, name, description) VALUES (%s, %s, %s)" # Define the SQL query
-        # cursor.execute(query, (4, row[0], row[1])) # Execute the query for each row in the CSV file
-        # conn.commit() # Commit the changes to the database
-        # cursor.close() # Close the cursor
-        # conn.close() # Close the connection
-        # ^^^ DEPRECATED ^^^
 
         # vvv Use Pinecone to upsert the embeddings vvv
 
@@ -77,7 +66,3 @@ with open("./data/workouts.csv") as kb_file:
         )  
 
 print('Record count AFTER adding knowledge ->', index.describe_index_stats())
-
-
-
-
