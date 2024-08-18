@@ -4,14 +4,13 @@ import os
 from sentence_transformers import SentenceTransformer
 from dotenv import load_dotenv
 import time
-import hashlib
+import uuid
 
 load_dotenv()
 
 api_key = os.getenv("PINECONE_API_KEY")
 index_name = os.getenv("PINECONE_ALL_MINILM_L6_V2_INDEX")
 custom_namespace='gptuesday'
-# custom_namespace='tad'
 pc = Pinecone(api_key=api_key)
 index = pc.Index(index_name)
 
@@ -20,7 +19,6 @@ print("BEFORE", index.describe_index_stats())
 model = SentenceTransformer('sentence-transformers/all-MiniLM-L6-v2')
 
 with open("./data/gptuesday_kb.csv") as kb_file:
-# with open("./data/tad_kb.csv") as kb_file:
     print(type(kb_file))
 
     csvreader = csv.reader(kb_file)
@@ -38,7 +36,8 @@ with open("./data/gptuesday_kb.csv") as kb_file:
           vectors=[
             # 1st index the question
             {
-              "id": hashlib.sha1(row[0].encode('utf-8')).hexdigest(),
+              # "id": hashlib.sha1(row[0].encode('utf-8')).hexdigest(),
+              "id": str(uuid.uuid4()),
               "values": embeddings[0],
               "metadata": {
                   "q": row[0],
@@ -48,7 +47,8 @@ with open("./data/gptuesday_kb.csv") as kb_file:
             },
             # 2nd index the answer
             {
-              "id": hashlib.sha1(row[1].encode('utf-8')).hexdigest(),
+              # "id": hashlib.sha1(row[1].encode('utf-8')).hexdigest(),
+              "id": str(uuid.uuid4()),
               "values": embeddings[1],
               "metadata": {
                   "q": row[0],
