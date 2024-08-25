@@ -36,7 +36,6 @@ with open("./data/gptuesday_kb.csv") as kb_file:
           vectors=[
             # 1st index the question
             {
-              # "id": hashlib.sha1(row[0].encode('utf-8')).hexdigest(),
               "id": str(uuid.uuid4()),
               "values": embeddings[0],
               "metadata": {
@@ -47,7 +46,6 @@ with open("./data/gptuesday_kb.csv") as kb_file:
             },
             # 2nd index the answer
             {
-              # "id": hashlib.sha1(row[1].encode('utf-8')).hexdigest(),
               "id": str(uuid.uuid4()),
               "values": embeddings[1],
               "metadata": {

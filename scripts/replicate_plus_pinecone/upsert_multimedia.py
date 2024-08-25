@@ -1,10 +1,9 @@
 from pinecone import Pinecone
 import os
-from dotenv import load_dotenv
 import hashlib
 import replicate
 import time
-
+from dotenv import load_dotenv
 load_dotenv()
 
 api_key = os.getenv("PINECONE_API_KEY")
@@ -18,7 +17,7 @@ directory = "./data/media_assets"
 for filename in os.listdir(directory):
     if filename.endswith(".wav"):
         print(os.path.join(directory, filename))
-        input = open(f"./data/media_assets/audio_v1/{filename}", "rb")
+        input = open(f"./data/media_assets/{filename}", "rb")
         vector = replicate.run(
             "daanelson/imagebind:0383f62e173dc821ec52663ed22a076d9c970549c209666ac3db181618b7a304",
             input={
@@ -40,9 +39,9 @@ for filename in os.listdir(directory):
           ],
           namespace='media_assets'
         )
-    elif filename.endswith(".jpg") or filename.endswith(".png"):
+    elif filename.endswith(".jpg") or filename.endswith(".jpeg") or filename.endswith(".png"):
         print(os.path.join(directory, filename))
-        input = open(f"./data/media_assets/images_v1/{filename}", "rb")
+        input = open(f"./data/media_assets/{filename}", "rb")
         vector = replicate.run(
             "daanelson/imagebind:0383f62e173dc821ec52663ed22a076d9c970549c209666ac3db181618b7a304",
             input={
